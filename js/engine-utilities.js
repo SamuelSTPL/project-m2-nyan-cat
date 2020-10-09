@@ -18,6 +18,10 @@ const nextEnemySpot = (enemies) => {
   // We can use this property to modify the spotsTaken array.
   const spotsTaken = [false, false, false, false, false];
   enemies.forEach((enemy) => {
+    displayScore.update(`Score: ${score}`);
+    score++;
+    // console.log(score);
+    // console.log(enemy);
     spotsTaken[enemy.spot] = true;
   });
 
@@ -31,6 +35,7 @@ const nextEnemySpot = (enemies) => {
   }
 
   // When the while loop is finished, we are assured that we have a number that corresponds to a free spot, so we return it.
+  // console.log(candidate);
   return candidate;
 };
 
@@ -40,12 +45,13 @@ const nextEnemySpot = (enemies) => {
 // The parameter represents the DOM node to which we will add the background
 const addBackground = (root) => {
   // We create a new img DOM node.
-  const bg = document.createElement('img');
+  const bg = document.createElement("img");
 
   // We set its src attribute and the height and width CSS attributes
-  bg.src = 'images/stars.png';
-  bg.style.height = `${GAME_HEIGHT}px`;
-  bg.style.width = `${GAME_WIDTH}px`;
+  bg.src = "images/background2.jpg";
+  bg.style.maxHeight = `${GAME_HEIGHT}px`;
+  bg.style.minHeight = `${GAME_HEIGHT}px`;
+  bg.style.maxWidth = `${GAME_WIDTH}px`;
 
   // We add it to the root DOM node
   root.append(bg);
@@ -53,14 +59,15 @@ const addBackground = (root) => {
   // We don't want the enemies to go beyond the lower edge of the image
   // so we place a white div to hide the enemies after they reach the bottom.
   // To see what it does, you can comment out all the remaining lines in the function to see the effect.
-  const whiteBox = document.createElement('div');
+  const blackBox = document.createElement("div");
 
   // We put a high z-index so that the div is placed over all other DOM nodes
-  whiteBox.style.zIndex = 100;
-  whiteBox.style.position = 'absolute';
-  whiteBox.style.top = `${GAME_HEIGHT}px`;
-  whiteBox.style.height = `${ENEMY_HEIGHT}px`;
-  whiteBox.style.width = `${GAME_WIDTH}px`;
-  whiteBox.style.background = '#fff';
-  root.append(whiteBox);
+  blackBox.style.zIndex = 100;
+  blackBox.style.position = "absolute";
+  blackBox.style.left = `${473}px`;
+  blackBox.style.top = `${GAME_HEIGHT + 130}px`;
+  blackBox.style.height = `${ENEMY_HEIGHT}px`;
+  blackBox.style.width = `${GAME_WIDTH}px`;
+  blackBox.style.background = "black";
+  root.append(blackBox);
 };

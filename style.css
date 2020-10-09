@@ -1,0 +1,73 @@
+body {
+  background-color: black;
+  margin: 0;
+  font-family: "TRON", sans-serif;
+}
+.gameContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#top {
+  color: blue;
+  font-size: 70px;
+  z-index: 100000;
+  text-shadow: 0 0 5px #4545f3, 0 0 10px #4545f3, 0 0 15px #fff,
+    0 0 20px #4545f3, 0 0 30px #4545f3, 0 0 40px #4545f3, 0 0 55px #4545f3,
+    0 0 75px #4545f3;
+}
+
+.lifes {
+  color: white;
+}
+
+#startMenu,
+#restartMenu,
+#victory {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 900px;
+  height: 610px;
+  left: 430px;
+  top: 125px;
+  margin: auto;
+  position: absolute;
+  z-index: 10000;
+  background-color: black;
+}
+
+#startMenu > p,
+#restartMenu > p,
+#victory > p {
+  color: white;
+  text-align: center;
+  font-size: 30px;
+}
+
+#startButton,
+#restartButton {
+  width: 200px;
+  height: 50px;
+  background-color: blue;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 20px;
+  font-family: "TRON", sans-serif;
+  cursor: pointer;
+  margin-top: 30px;
+}
+
+#startButton:hover,
+#restartButton:hover {
+  box-shadow: 0 0 5px #4545f3, 0 0 10px #4545f3, 0 0 15px #fff, 0 0 20px #4545f3,
+    0 0 30px #4545f3, 0 0 40px #4545f3, 0 0 55px #4545f3, 0 0 75px #4545f3;
+}
+
+#restartMenu,
+#victory {
+  display: none;
+}

@@ -54,20 +54,107 @@ class Engine {
       this.enemies.push(new Enemy(this.root, spot));
     }
 
+    if (score > 50 && score < 60) {
+      ///////////////////////////////////////////////////////////////////
+      hailSound.play();
+      ///////////////////////////////////////////////////////////////////
+    }
+    if (score > 150 && score < 160) {
+      ///////////////////////////////////////////////////////////////////
+      hailSound.play();
+      ///////////////////////////////////////////////////////////////////
+    }
+    if (score > 350 && score < 360) {
+      ///////////////////////////////////////////////////////////////////
+      chewSound.play();
+      ///////////////////////////////////////////////////////////////////
+    }
+
+    if (score > 50 && score <= 150) {
+      backgroundColor = "green";
+      this.changingColor("green");
+      this.player.update("green");
+      MAX_ENEMIES = 4;
+    }
+    if (score > 150 && score <= 350) {
+      backgroundColor = "yellow";
+      this.changingColor("yellow");
+      this.player.update("yellow");
+      MAX_ENEMIES = 5;
+    }
+    if (score > 350) {
+      backgroundColor = "red";
+      this.changingColor("red");
+      this.player.update("red");
+      MAX_ENEMIES = 6;
+    }
+
     // We check if the player is dead. If he is, we alert the user
     // and return from the method (Why is the return statement important?)
     if (this.isPlayerDead()) {
-      window.alert('Game over');
+      document.getElementById("restartMenu").style.display = "flex";
+      return;
+    }
+
+    if (this.hasWon()) {
+      comingSound.play();
+      document.getElementById("victory").style.display = "flex";
       return;
     }
 
     // If the player is not dead, then we put a setTimeout to run the gameLoop in 20 milliseconds
-    setTimeout(this.gameLoop, 20);
+    setTimeout(this.gameLoop, 5);
+    // console.log(this.player);
+    // console.log(this.enemies);
   };
 
-  // This method is not implemented correctly, which is why
-  // the burger never dies. In your exercises you will fix this method.
+  changingColor = (color) => {
+    document.getElementById("top").style.color = color;
+    document.getElementById(
+      "top"
+    ).style.textShadow = `0 0 5px ${color}, 0 0 10px ${color}, 0 0 15px #fff, 0 0 20px ${color}, 0 0 30px ${color}, 0 0 40px ${color}, 0 0 55px ${color}, 0 0 75px ${color}`;
+    let changeMe = [displayScore, displayLifes];
+    changeMe.forEach((item) => {
+      console.log(item);
+      item.domElement.style.color = color;
+    });
+  };
+
+  playerHit = () => {
+    life--;
+    ///////////////////////////////////////////////////////////////////
+    damnSound.play();
+    ///////////////////////////////////////////////////////////////////
+    displayLifes.update(`Lifes: ${life}`);
+    invincible = true;
+    setTimeout(function () {
+      invincible = false;
+    }, 1000);
+  };
+
+  hasWon = () => {
+    if (score >= 800) {
+      return true;
+    }
+  };
+
   isPlayerDead = () => {
-    return false;
+    let isDead = false;
+    if (life === 0) {
+      isDead = true;
+      return isDead;
+    }
+    this.enemies.forEach((enemy) => {
+      if (
+        enemy.x < this.player.x + (PLAYER_WIDTH - 15) &&
+        enemy.x + (ENEMY_WIDTH - 15) > this.player.x &&
+        enemy.y < this.player.y + (PLAYER_HEIGHT - 15) &&
+        enemy.y + (ENEMY_HEIGHT - 15) > this.player.y &&
+        invincible === false
+      ) {
+        this.playerHit();
+      }
+    });
+    return isDead;
   };
 }

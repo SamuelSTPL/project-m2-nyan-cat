@@ -1,10 +1,31 @@
 <html>
   <head>
-    <title>Nyan Kat</title>
+    <title>Nyan TRON</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link href="https://fonts.cdnfonts.com/css/tron" rel="stylesheet">
   </head>
   <body>
-    <div id="app"></div>
+    <div id="startMenu">
+      <img src="/images/enemy.png" alt="A NYAN cat">
+      <p>Some damn cats started to invade earth! Your plan is simple racer: survive!</p>
+      <button id="startButton">Ready</button>
+    </div>
+    <div id="restartMenu">  
+      <img src="/images/enemy.png" alt="A NYAN cat">
+      <p>You couldn't even handle a few cats...</p>
+      <button id="restartButton">Restart</button>
+    </div>
+    <div id="victory">  
+      <img src="/images/DukeNukem.png" alt="Duke Nukem" id="duke">
+      <p>Good Work</p>
+    </div>
+    <div class="gameContainer">
+      <div id="top">Nyan TRON</div>
+      <div id="app">
+    </div>
     <script src="js/data.js"></script>
+    <script src="js/sounds.js"></script>
+    <script src="js/Text.js"></script>
     <script src="js/Enemy.js"></script>
     <script src="js/engine-utilities.js"></script>
     <script src="js/Engine.js"></script>
